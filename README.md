@@ -2,7 +2,7 @@
 
 用户可自行配置下载源，自己编写下载模板项目
 
-####使用说明
+#### 使用说明
 
 第一步拉取项目
 
@@ -47,7 +47,7 @@ cli.config.json
 
 首先模板渲染引擎使用ejs进行，可以参考ejs官网了解语法。
 
-同时需要有两个文件，.deleteFunc.js和.template.json（可参考模板仓库https://github.com/almighty-luo/template）
+同时需要有两个文件，.deleteFunc.js和.template.json（可参考模板仓库https://github.com/almighty-luo/template ）
 .deleteFunc.js文件中的方法会放回项目生成后，最后需要删除的模板文件
 .template.json文件提供了该模板仓库可以选择集成那些配置（例如集成：axios,vuex等）
 
