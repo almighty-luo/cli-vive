@@ -1,7 +1,7 @@
 // 入口文件
 const getUserData = require('./selec-datat')
 const getGitTem = require('./dowm-temp')
-const findSelectData = require('./provide-select-data')
+const { findSelectData } = require('./utils')
 const userSetTem = require('./selec-tem')
 const rendenTemp = require('./renden-temp')
 /* 
@@ -9,7 +9,7 @@ const rendenTemp = require('./renden-temp')
     1.查看版本
     2.查看帮助指令
     3.创建模板
-  return 用户选择数据
+    return 用户选择数据
 */
 
 /* 
@@ -37,12 +37,11 @@ const rendenTemp = require('./renden-temp')
   六、移动替换后的文件到当前目录，并且删除无用文件
 */
 async function init () {
-  const userData = await getUserData()
-  const temPath = await getGitTem(userData.template[0])
-  const templateData = findSelectData(temPath + '\\.template.json')
-  console.log(templateData)
-  const userSelec = await userSetTem(templateData.data)
-  const isRendenTemp = await rendenTemp(userSelec.selecData)
+  const template = await getUserData()
+  const temPath = await getGitTem(template)
+  const { data = [] } = findSelectData(temPath)
+  const { selecData = []} = await userSetTem(data)
+  const isRendenTemp = await rendenTemp(selecData, data)
 }
 
 init()

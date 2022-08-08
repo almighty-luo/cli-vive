@@ -4,12 +4,12 @@ const program = new Command()
 const packageJson = require('../package.json')
 const inquirer = require('inquirer')
 const axios = require('axios')
+const { processCwd } = require('./config')
 let userData = {}
-const processCCwd = process.cwd()
-const { hasConfig } = require('./hasConfig')
+const { hasConfig } = require('./utils')
 // 获取配置文件里的请求地址
 let configUrl
-if (hasConfig) configUrl = require(`${processCCwd}/cli.config.json`).url
+if (hasConfig) configUrl = require(`${processCwd}/cli.config.json`).url
 const url = configUrl || 'https://api.github.com/repos/almighty-luo/template/branches'
 function getDataOfUrl () {
   return new Promise((resole, reject) => {
@@ -27,15 +27,15 @@ function getDataOfUrl () {
             type: 'checkbox',
             name: 'template',
             message: '请选择模板',
+            type: 'list',
             choices: data.map(item => item.name)
           }
         ]
-        const seData = await inquirer.prompt(arr)
-        if (seData) resole(seData)
-        reject(seData)
+        const { template } = await inquirer.prompt(arr)
+        if (template) resole(template)
+        reject(template)
       })
-    program.parse(process.argv)
-    const options = program.opts()
+    program.parse()
   })
 }
 

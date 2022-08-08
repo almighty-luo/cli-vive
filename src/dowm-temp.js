@@ -2,7 +2,9 @@
 const fs = require('fs')
 const path = require('path')
 const download = require('download-git-repo')
-const { hasConfig } = require('./hasConfig')
+const { hasConfig } = require('./utils')
+const { processCwd, dirnameStr } = require('./config')
+console.log('dirnameStr', dirnameStr)
 /* 
   git: git仓库的类型
   gitUserName: 用户名
@@ -11,9 +13,9 @@ const { hasConfig } = require('./hasConfig')
 let git, gitUserName, projectName
 
 if (hasConfig) {
-  git = require(`${processCCwd}/cli.config.json`).git
-  gitUserName = require(`${processCCwd}/cli.config.json`).gitUserName
-  projectName = require(`${processCCwd}/cli.config.json`).projectName
+  git = require(`${processCwd}/cli.config.json`).git
+  gitUserName = require(`${processCwd}/cli.config.json`).gitUserName
+  projectName = require(`${processCwd}/cli.config.json`).projectName
 }
 
 git = git || 'github.com'
@@ -22,8 +24,7 @@ projectName = projectName || 'template'
 
 function getGitTem (name) {
   return new Promise(resolve => {
-    const dirnameStr = __dirname.slice(0, -4)
-
+    const projecUrl = path.join(dirnameStr, 'projec')
     try {
       function removeDir (dir) {
         let files = fs.readdirSync(dir)
@@ -40,14 +41,14 @@ function getGitTem (name) {
         }
         fs.rmdirSync(dir)//如果文件夹是空的，就将自己删除掉
       }
-      removeDir(`${dirnameStr}\\projec`)
+      removeDir(projecUrl)
     } catch (error) {
-    }
-    download(`${git}:${gitUserName}/${projectName}#${name}`, dirnameStr + '\\projec', { clone: true }, err => {
+    } 
+    download(`${git}:${gitUserName}/${projectName}#${name}`, projecUrl, { clone: true }, err => {
       if (err) {
         throw Error(err)
       } else {
-        resolve(dirnameStr + '\\projec')
+        resolve(projecUrl) 
       }
     })
   })

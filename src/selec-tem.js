@@ -9,7 +9,7 @@ module.exports = async (data) => {
     {
       type: 'checkbox',
       name: 'selecData',
-      message: '请选择模板',
+      message: '请选择配置项',
       choices: data
     }
   ]

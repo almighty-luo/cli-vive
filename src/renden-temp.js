@@ -4,14 +4,16 @@ const cons = require('consolidate')
 const renden = require('ejs').render
 const ncp = require('ncp').ncp
 const findRemoveSync = require('find-remove')
+const path = require('path')
 const MetalSmith = require('metalsmith') //遍历文件
-const fs = require('fs')
-module.exports = async (selecData = []) => {
+const { dirnameStr } = require('./config')
+module.exports = async (selecData = [], temData = []) => {
   const data = {}
-  selecData.forEach(item => {
-    data[item] = true
+  temData.forEach(item => {
+    data[item] = selecData.find(ele => ele === item) ? true : false
   })
-  MetalSmith(__dirname.slice(0, -4)).source('./projec').destination('./build').use((files, metalsmith, done) => {
+  MetalSmith(dirnameStr).source('./projec').destination('./build').use((files, metalsmith, done) => {
+    // 遍历渲染模版
     for (const key in files) {
       if (Object.hasOwnProperty.call(files, key)) {
         const element = files[key];
@@ -20,18 +22,19 @@ module.exports = async (selecData = []) => {
       }
     }
     done()
-  }).clean(true).build((err) => {
+  })
+  .clean(true).build((err) => {
+    if (err) return new Error(err)
     const deleteArr = require('../build/.deleteFunc')(selecData)
     deleteArr.forEach(async (item, index) => {
-      const result = await findRemoveSync(__dirname.slice(0, -4) + '/build' + item.path, { files: item.name })
+      const result = await findRemoveSync(path.join(dirnameStr, '/build', item.path), { files: item.name })
       if (index === deleteArr.length - 1) {
-        console.log(`${__dirname.slice(0, -4)}/build`)
         console.log(process.cwd())
-        ncp(`${__dirname.slice(0, -4)}/build`, process.cwd(), (err) => {
-          console.log(err)
+        ncp(path.join(dirnameStr, '/build'), process.cwd(), (err) => {
+          if (err) new Error(err)
+          console.log('创建成功')
         })
       }
     })
-    
   })
 }
