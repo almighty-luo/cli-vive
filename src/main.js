@@ -37,11 +37,14 @@ const rendenTemp = require('./renden-temp')
   六、移动替换后的文件到当前目录，并且删除无用文件
 */
 async function init () {
-  const template = await getUserData()
-  const temPath = await getGitTem(template)
-  const { data = [] } = findSelectData(temPath)
-  const { selecData = []} = await userSetTem(data)
-  const isRendenTemp = await rendenTemp(selecData, data)
+  const templateOption = await getUserData()
+  const inDirName = await getGitTem(templateOption)
+  let { data = [], isSetUserSelect } = findSelectData()
+  let selectData = data
+  if (isSetUserSelect) {
+    selectData = await userSetTem(data).selectData
+  }
+  const isRendenTemp = await rendenTemp(selectData, data, inDirName)
 }
 
 init()

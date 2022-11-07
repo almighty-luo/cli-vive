@@ -1,5 +1,4 @@
 // 用户来选择配置数据
-
 const inquirer = require('inquirer')
 
 
@@ -13,6 +12,6 @@ module.exports = async (data) => {
       choices: data
     }
   ]
-  const seData = await inquirer.prompt(arr)
-  return seData
+  const selectData = await inquirer.prompt(arr)
+  return selectData
 }

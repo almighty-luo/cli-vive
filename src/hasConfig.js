@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { processCwd } = require('./config')
+const { processCwd } = require('../config/config.js')
 // 判断是否有配置文件
 let hasConfig
 try {

@@ -1,0 +1,8 @@
+{
+    "type": "http",
+    "url": "https://api.github.com/repos/almighty-luo/template/branches",
+    "dowmTempInfo": {
+        "type": "git",
+        "dowmTempUrl": "https://github.com/almighty-luo/template.git"
+    }
+}

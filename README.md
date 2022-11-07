@@ -4,44 +4,76 @@
 
 #### 使用说明
 
-第一步拉取项目
+第一步
 
 ```js
-git clone xxxx
-
-项目拉取后在该项目目录下执行
-npm link
+npm i cli-vive
 ```
 
 第二步
-项目拉取后在该项目目录下执行
+创建一个新文件夹后，在新文件下面创建一个cli.config.json配置文件（如果不使用，这会使用默认的配置）
 ```js
-npm link
+//使用git示例
+{
+    "type": "git",
+    "url": "git@github.com:almighty-luo/template.git"
+}
+// 使用http版示例
+{
+    "type": "http",
+    "url": "http://xxx"
+}
+// 使用配置数据
+/* 
+    使用配置数据的时候，需要在userSelectList里面的url提供相关模板的下载地址
+*/
+{
+    "type": "local",
+    "userSelectList": [
+        {
+            "name": "模板项目1",
+            "type": "http"
+            "dowmTempUrl": "http://xxx"
+        },
+        {
+            "name": "模板项目1"，
+            "type": "git"
+            "dowmTempUrl": "git://xxx"
+        }
+    ]
+}
 
-接着执行下面查看版本
-
-my-cli -V
-
+// 不使用选择项目，直接提供下载模板
+{
+    "type": "none"
+}
 ```
 
+下载模板下载方式和类型配置
+```js
+{
+    "dowmTempInfo": {
+        "type": "git",
+        "dowmTempUrl": "git:xxx"
+    }
+}
+```
+
+type支持"git"、"http",如果不填，则需要在新建文件下面添加一个template文件，再手动把模板项目放入该目录下
 第三步
 
-新创建一个文件夹，然后在该文件夹下执行脚手架命令
-
+模板项目配置
+当检索到模板文件的时候，会去搜索模板文件跟目录下的.template.json文件，里面涉及到了整个项目需要使用到的数据
 ```js
-my-cli create newTem
-
+{
+    "isSetUserSelect": true //提供的数据是否由用户选择
+    "data": ["axios", "vuex", "eslint"]
+}
 ```
 
 第四步选配置项
 
-自定义配置项目
 
-了解
-cli.config.json
-
-说明：该文件用于指定下载模板的仓库地址（如果没有则使用默认的）
-拿我上面拉取模板作为例子，如果我在‘newTem’项目中创建cli.config.json文件，并且有git、gitUserName、projectName这三个属性（git代表git地址，gitUserName代表用户名称，projectName代表仓库名称）用于调用github等开源项目的api来获取模板仓库信息。
 
 定义模板
 
@@ -49,6 +81,6 @@ cli.config.json
 
 同时需要有两个文件，.deleteFunc.js和.template.json（可参考模板仓库https://github.com/almighty-luo/template ）
 .deleteFunc.js文件中的方法会放回项目生成后，最后需要删除的模板文件
-.template.json文件提供了该模板仓库可以选择集成那些配置（例如集成：axios,vuex等）
+.template.json文件提供了该模板仓库可以选择集成那些配置（例如集成：axios,vuex等
 
 

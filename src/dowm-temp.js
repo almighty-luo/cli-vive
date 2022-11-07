@@ -1,56 +1,35 @@
 // 根据用户选择下载模板
-const fs = require('fs')
+const fse = require('fs-extra')
 const path = require('path')
-const download = require('download-git-repo')
-const { hasConfig } = require('./utils')
-const { processCwd, dirnameStr } = require('./config')
-console.log('dirnameStr', dirnameStr)
-/* 
-  git: git仓库的类型
-  gitUserName: 用户名
-  projectName: 项目地址
-*/
-let git, gitUserName, projectName
+const { simpleGit } = require('simple-git')
+const { processCwd } = require('../config/config.js')
+// 定义存放模板项目路径
+const templatePath = path.join(processCwd, 'template')
+// 定义解析zip压缩包路劲
+const temZip = path.join(templatePath, 'tem.zip')
+const { getfileByUrl, ungzip } = require('./utils')
 
-if (hasConfig) {
-  git = require(`${processCwd}/cli.config.json`).git
-  gitUserName = require(`${processCwd}/cli.config.json`).gitUserName
-  projectName = require(`${processCwd}/cli.config.json`).projectName
-}
-
-git = git || 'github.com'
-gitUserName = gitUserName || 'almighty-luo'
-projectName = projectName || 'template'
-
-function getGitTem (name) {
-  return new Promise(resolve => {
-    const projecUrl = path.join(dirnameStr, 'projec')
-    try {
-      function removeDir (dir) {
-        let files = fs.readdirSync(dir)
-        for (var i = 0; i < files.length; i++) {
-          let newPath = path.join(dir, files[i]);
-          let stat = fs.statSync(newPath)
-          if (stat.isDirectory()) {
-            //如果是文件夹就递归下去
-            removeDir(newPath);
-          } else {
-            //删除文件
-            fs.unlinkSync(newPath);
-          }
-        }
-        fs.rmdirSync(dir)//如果文件夹是空的，就将自己删除掉
+function getGitTem (templateOption) {
+  const { type, url, inDirName } = templateOption
+  return new Promise(async resolve => {
+    if (type === 'git') {
+      const options = {
+        baseDir: templatePath,
+        binary: 'git',
+        maxConcurrentProcesses: 6,
+        trimmed: false,
       }
-      removeDir(projecUrl)
-    } catch (error) {
-    } 
-    download(`${git}:${gitUserName}/${projectName}#${name}`, projecUrl, { clone: true }, err => {
-      if (err) {
-        throw Error(err)
-      } else {
-        resolve(projecUrl) 
+      const git = simpleGit(options)
+      try {
+        await git.checkout('origin/' + url, ['-d']) // 切换分支
+      } catch (err) {
+        console.log(err)
       }
-    })
+    } if (type === 'http') {
+     const isDown = await getfileByUrl(url, temZip)
+     if (isDown) ungzip(temZip, templatePath)
+    }
+    resolve(inDirName)
   })
 }
 
