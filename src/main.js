@@ -1,9 +1,10 @@
 // 入口文件
 const getUserData = require('./selec-datat')
 const getGitTem = require('./dowm-temp')
-const { findSelectData } = require('./utils')
+const { findSelectData, findFunc } = require('./utils')
 const userSetTem = require('./selec-tem')
 const rendenTemp = require('./renden-temp')
+const handleFunc = require('./handleFunc')
 /* 
   一、识别指令，判断用户行为
     1.查看版本
@@ -38,13 +39,22 @@ const rendenTemp = require('./renden-temp')
 */
 async function init () {
   const templateOption = await getUserData()
+  // 下载模板
   const inDirName = await getGitTem(templateOption)
-  let { data = [], isSetUserSelect } = findSelectData()
-  let selectData = data
+  const { beforeUserTem, beforeRendenTem, mouthedRendenTem } = findFunc()
+
+  if (beforeUserTem) await beforeUserTem(handleFunc, inDirName) //执行生命周期
+
+  let { data = {}, isSetUserSelect } = findSelectData()
+  let selectData = data.selectData
   if (isSetUserSelect) {
-    selectData = await userSetTem(data).selectData
+    selectData = await userSetTem(selectData).selectData
   }
-  const isRendenTemp = await rendenTemp(selectData, data, inDirName)
+  // 遍历渲染模板
+  if (beforeRendenTem) await beforeRendenTem(handleFunc, inDirName, selectData) //执行生命周期
+  await rendenTemp(selectData, data, inDirName)
+
+  if (mouthedRendenTem) await mouthedRendenTem(handleFunc, inDirName, selectData)//执行生命周期
 }
 
 init()

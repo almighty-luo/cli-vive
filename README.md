@@ -67,7 +67,9 @@ type支持"git"、"http",如果不填，则需要在新建文件下面添加一�
 ```js
 {
     "isSetUserSelect": true //提供的数据是否由用户选择
-    "data": ["axios", "vuex", "eslint"]
+    "data": {
+        "selectData": ["axios", "vuex", "eslint"] // 提供给用户选择的数据
+    }
 }
 ```
 

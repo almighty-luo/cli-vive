@@ -15,7 +15,11 @@ try {
 
 // 根据模板里的信息，提供给用户选择配置数据
 function findSelectData () {
-  return require(path.join(processCwd, 'template', '.template.json'))
+  return require(path.join(processCwd, 'template', 'config', '.template.json'))
+}
+
+function findFunc () {
+  return require(path.join(processCwd, 'template', 'config', '.func.js'))
 }
 /**
  * 
@@ -42,4 +46,4 @@ async function ungzip(source, target) {
   }
 }
 
-module.exports = { hasConfig, findSelectData, getfileByUrl, ungzip }
+module.exports = { hasConfig, findSelectData, getfileByUrl, ungzip, findFunc }

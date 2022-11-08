@@ -28,16 +28,5 @@ module.exports = async (selectData = [], temData = [], inDirName) => {
   })
   .clean(true).build((err) => {
     if (err) return new Error(err)
-    // const deleteArr = require('../build/.deleteFunc')(selectData)
-    // deleteArr.forEach(async (item, index) => {
-    //   const result = await findRemoveSync(path.join(dirnameStr, '/build', item.path), { files: item.name })
-    //   if (index === deleteArr.length - 1) {
-    //     console.log(process.cwd())
-    //     ncp(path.join(dirnameStr, '/build'), process.cwd(), (err) => {
-    //       if (err) new Error(err)
-    //       console.log('创建成功')
-    //     })
-    //   }
-    // })
   })
 }
