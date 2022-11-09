@@ -30,7 +30,6 @@ function getDataOfUrl () {
           cliConfigData = require(`${processCwd}/cli.config.json`)
           if (!cliConfigData.dowmTempInfo && !cliConfigData.dowmTempInfo.type) return new Error('必须输入模板下载源')
           dowmTempType = cliConfigData.dowmTempInfo.type
-          console.log('cliConfigData.url', cliConfigData.url)
           switch (cliConfigData.type) {
             case 'git':
               const remote = cliConfigData.url
@@ -47,7 +46,6 @@ function getDataOfUrl () {
               }
               const git = simpleGit(options)
               const { all = [] } = await git.branch({'-r': true}) //仅查询远程分支名称
-              console.log(all)
               choicesData = all.map(item => {
                 return {
                   name: item.split('/').pop()
@@ -88,6 +86,12 @@ function getDataOfUrl () {
             }
           ]
           const { template } = await inquirer.prompt(arr)
+          choicesData.forEach(element => { 
+            if (element['name'] === template) {
+              dowmTempInfo = element
+              dowmTempType = element.dowmTempInfo && element.dowmTempInfo.type
+            }
+          })
           switch (dowmTempType) {
             case 'git': //模板下载源git
               dowmTempUrl = template

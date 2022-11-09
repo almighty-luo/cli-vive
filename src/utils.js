@@ -15,11 +15,11 @@ try {
 
 // 根据模板里的信息，提供给用户选择配置数据
 function findSelectData () {
-  return require(path.join(processCwd, 'template', 'config', '.template.json'))
+  return require(path.join(processCwd, 'template', 'cli.config', '.template.json'))
 }
 
 function findFunc () {
-  return require(path.join(processCwd, 'template', 'config', '.func.js'))
+  return require(path.join(processCwd, 'template', 'cli.config', '.func.js'))
 }
 /**
  * 

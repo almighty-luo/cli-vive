@@ -1,17 +1,39 @@
-### sixi-cli主要用于生成项目
+### cli-vive用途
 
-用户可自行配置下载源，自己编写下载模板项目
+ cli-vive可以理解为代码生成器，用户可自行配置下载源，自己编写下载模板项目
 
-#### 使用说明
+#### 使用说明  
 
-第一步
+第一步下载脚手架
 
 ```js
-npm i cli-vive
+npm i cli-vive -g
 ```
 
 第二步
-创建一个新文件夹后，在新文件下面创建一个cli.config.json配置文件（如果不使用，这会使用默认的配置）
+创建一个新文件夹后，在新文件下面创建一个cli.config.json配置文件（如果不创建，则会下载默认官网模板）
+"type":表示下载方式，支持git、http、local、none四种方案
+
+        git：表示会使用本地git进行获取git仓库信息，所以需要本地安装并且配置好git信息
+
+        http: 会使用http请求去获取下载信息
+            { //响应字段示例
+                res: [
+                    {
+                        type: "http",
+                        name: "模板项目1名称",
+                        dowmTempInfo: {
+                            type: "http",
+                            dowmTempUrl: "http://xxx" // 下载的文件必须是经过zip打包后的文件
+                        }
+                    }
+                ]
+            }
+
+        local: 本地配置用户选择信息和模板下载源
+            使用本地配置用户选择信息和模板下载源时，需要在userSelectList中配置好，具体使用下面提供示例。
+        
+        none: 直接跳过用户选择信息这一步，进入下载模板阶段。
 ```js
 //使用git示例
 {
@@ -50,6 +72,8 @@ npm i cli-vive
 ```
 
 下载模板下载方式和类型配置
+下载模板方式支持三类: git、http、local
+    注意：当选择local时，需要把模板文件放置在新建文件夹下，并且模板文件的文件夹名为template
 ```js
 {
     "dowmTempInfo": {
@@ -59,11 +83,11 @@ npm i cli-vive
 }
 ```
 
-type支持"git"、"http",如果不填，则需要在新建文件下面添加一个template文件，再手动把模板项目放入该目录下
-第三步
+### 模板项目的配置规则
+配置文件夹：
+    需要在模板文件的根目录下添加cli.config文件夹用来管理配置文件
 
-模板项目配置
-当检索到模板文件的时候，会去搜索模板文件跟目录下的.template.json文件，里面涉及到了整个项目需要使用到的数据
+当检索到模板文件的时候，会去搜索模板文件cli.config文件夹下的.template.json文件，里面涉及到了整个项目需要使用到的数据
 ```js
 {
     "isSetUserSelect": true //提供的数据是否由用户选择
@@ -71,18 +95,38 @@ type支持"git"、"http",如果不填，则需要在新建文件下面添加一�
         "selectData": ["axios", "vuex", "eslint"] // 提供给用户选择的数据
     }
 }
+
+```
+生命周期：
+    在cli.config中添加一个.func.js文件
+```js
+// 你可以在相应的生命周期去对文件的增删改查
+module.exports = {
+  // 刚刚下载完模板，还没有移动到新建目录下
+  beforeUserTem (cliGloble, inDirName) {
+    // cliGloble中包含fse、path函数库
+    // inDirName用户创建项目的名称
+    console.log('beforeUserTem', cliGloble)
+  },
+  // 已经移动到新建目录下和用户已经选择完毕，但是还未开始渲染
+  beforeRendenTem (handleFunc, inDirName, selectData) {
+    // selectData用户选择的数据
+  },
+  // 渲染完毕
+  mouthedRendenTem (handleFunc, inDirName, selectData) {
+
+  }
+}
 ```
 
+注意：这里有个注意的点，当你的模板项目中的package.json也写上ejs语法时，会导致node的require导入func.js发生错误，这是因为require时，会先检查离他最近的package.json文件来判断是使用那种模块方式，这是如果package.json发生错误，则导入失败，所以一般都在cli.congif文件下执行npm init -y新建一个package.json文件。
+
 第四步选配置项
-
-
 
 定义模板
 
 首先模板渲染引擎使用ejs进行，可以参考ejs官网了解语法。
 
-同时需要有两个文件，.deleteFunc.js和.template.json（可参考模板仓库https://github.com/almighty-luo/template ）
-.deleteFunc.js文件中的方法会放回项目生成后，最后需要删除的模板文件
-.template.json文件提供了该模板仓库可以选择集成那些配置（例如集成：axios,vuex等
+.template.json文件提供了该模板仓（可参考模板仓库https://github.com/almighty-luo/template ）库可以选择集成那些配置（例如集成：axios,vuex等）
 
 
