@@ -58,7 +58,7 @@ npm i cli-vive -g
             "dowmTempUrl": "http://xxx"
         },
         {
-            "name": "模板项目1"，
+            "name": "模板项目1",
             "type": "git"
             "dowmTempUrl": "git://xxx"
         }

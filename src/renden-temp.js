@@ -1,8 +1,6 @@
 // 根据用户选择渲染模板
 
 const renden = require('ejs').render
-const ncp = require('ncp').ncp
-const findRemoveSync = require('find-remove')
 const path = require('path')
 const MetalSmith = require('metalsmith') //遍历文件
 const { dirnameStr, processCwd } = require('../config/config.js')

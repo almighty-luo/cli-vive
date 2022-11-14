@@ -46,15 +46,16 @@ async function init () {
   if (beforeUserTem) await beforeUserTem(handleFunc, inDirName) //执行生命周期
 
   let { data = {}, isSetUserSelect } = findSelectData()
-  let selectData = data.selectData
+  let temData = data.selectData
+  let userSelectData = []
   if (isSetUserSelect) {
-    selectData = await userSetTem(selectData).selectData
+    userSelectData = await userSetTem(selectData).selectData
   }
   // 遍历渲染模板
-  if (beforeRendenTem) await beforeRendenTem(handleFunc, inDirName, selectData) //执行生命周期
-  await rendenTemp(selectData, data, inDirName)
+  if (beforeRendenTem) await beforeRendenTem(handleFunc, inDirName, userSelectData) //执行生命周期
+  await rendenTemp(userSelectData, temData, inDirName)
 
-  if (mouthedRendenTem) await mouthedRendenTem(handleFunc, inDirName, selectData)//执行生命周期
+  if (mouthedRendenTem) await mouthedRendenTem(handleFunc, inDirName, userSelectData)//执行生命周期
 }
 
 init()
