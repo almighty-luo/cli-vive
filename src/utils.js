@@ -46,4 +46,12 @@ async function ungzip(source, target) {
   }
 }
 
-module.exports = { hasConfig, findSelectData, getfileByUrl, ungzip, findFunc }
+function handleUserSelect (selectData = [], temData = []) {
+  const data = {}
+  temData.forEach(item => {
+    data[item] = selectData.find(ele => ele === item) ? true : false
+  })
+  return data
+}
+
+module.exports = { hasConfig, findSelectData, getfileByUrl, ungzip, findFunc, handleUserSelect }
