@@ -1,6 +1,6 @@
 {
   "name": "cli-vive",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "便捷脚手架",
   "main": "index.js",
   "bin": {
@@ -22,6 +22,10 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almighty-luo/sixi-cli.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
