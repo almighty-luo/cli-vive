@@ -12,6 +12,7 @@
     "commander": "^9.2.0",
     "consolidate": "^0.16.0",
     "ejs": "^3.1.8",
+    "element-plus": "^2.2.29",
     "extract-zip": "^2.0.1",
     "fs-extra": "^10.1.0",
     "inquirer": "^8.2.4",
@@ -28,6 +29,9 @@
   "scripts": {
     "dev": "ts-node ./packages/vive/src/main.ts",
     "eslint": "eslint ./packages/vive/src --ext .ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
     "prepare": "husky install"
   },
   "keywords": [
@@ -49,7 +53,8 @@
     "prettier": "^2.8.3",
     "rollup": "^3.12.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vitepress": "1.0.0-alpha.45"
   },
   "lint-staged": {
     "*.ts": [
