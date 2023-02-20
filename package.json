@@ -17,6 +17,7 @@
     "fs-extra": "^10.1.0",
     "inquirer": "^8.2.4",
     "metalsmith": "^2.4.3",
+    "nodemon": "^2.0.20",
     "ora": "^6.1.0",
     "request": "^2.88.2",
     "simple-git": "^3.14.1",
@@ -27,7 +28,7 @@
     "url": "git+https://github.com/almighty-luo/sixi-cli.git"
   },
   "scripts": {
-    "dev": "ts-node ./packages/vive/src/main.ts",
+    "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts",
     "eslint": "eslint ./packages/vive/src --ext .ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",

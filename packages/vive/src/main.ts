@@ -1,6 +1,12 @@
-const a: string = '10'
-const b = 10
-if (a === '10') {
-	console.log(1234)
+const {hasOptionFile} = require('../utils')
+
+/* 入口文件 */
+function main(): void {
+	/* 读取配置文件 */
+	const optionData = hasOptionFile()
+	console.log(optionData)
 }
-console.log(b)
+
+main()
+
+export {}

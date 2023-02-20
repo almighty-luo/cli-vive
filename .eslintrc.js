@@ -12,6 +12,7 @@ module.exports = {
 	},
 	rules: {
 		'@typescript-eslint/no-inferrable-types': 0,
+		'@typescript-eslint/no-var-requires': 0,
 		'no-var': 2,
 		eqeqeq: [
 			'error',
