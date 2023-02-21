@@ -1,4 +1,4 @@
-const {hasOptionFile} = require('../utils')
+const { hasOptionFile } = require('../utils')
 
 /* 入口文件 */
 function main(): void {

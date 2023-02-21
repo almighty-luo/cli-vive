@@ -5,7 +5,7 @@ module.exports = {
 		es2021: true
 	},
 	parser: '@typescript-eslint/parser',
-	extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+	extends: ['plugin:@typescript-eslint/recommended', 'prettier', 'plugin:prettier/recommended'],
 	plugins: ['prettier'],
 	parserOptions: {
 		ecmaVersion: 2020
@@ -21,6 +21,19 @@ module.exports = {
 				null: 'ignore'
 			}
 		],
-		'prettier/prettier': 2
+		'prettier/prettier': [
+			1,
+			{
+				endOfLine: 'auto',
+				// 使用单引号
+				singleQuote: true,
+				printWidth: 140, // 超过最大值换行
+				tabWidth: 2, // tab键宽度，默认为4
+				useTabs: true, // 使用tab（制表符）缩进而非空格
+				semi: false, // 行末是否加分号
+				trailingComma: 'none', // 最后一个对象元素加逗号
+				bracketSpacing: true // 对象，数组加空格
+			}
+		]
 	}
 }
