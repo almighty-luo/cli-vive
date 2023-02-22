@@ -1,10 +1,12 @@
-const { hasOptionFile } = require('../utils')
-
+const download = require('./download/index')
+const handleTemplate = require('./handleTemplate/index')
+const deleteFile = require('./deleteFlie/index')
 /* 入口文件 */
-function main(): void {
+async function main() {
 	/* 读取配置文件 */
-	const optionData = hasOptionFile()
-	console.log(optionData)
+	const downloadCentral = await download()
+	const handleTemplateCentral = await handleTemplate(downloadCentral)
+	deleteFile(handleTemplateCentral)
 }
 
 main()
