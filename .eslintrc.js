@@ -22,7 +22,7 @@ module.exports = {
       },
     ],
     'prettier/prettier': [
-      1,
+      0,
       {
         arrowParens: 'always',
         bracketSameLine: true,
