@@ -1,3 +1,3 @@
 #! /usr/bin/env node
 
-require('../lib/main.js')
+require('../packages/vive/src/main.ts')

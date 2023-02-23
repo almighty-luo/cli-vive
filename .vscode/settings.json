@@ -1,10 +1,29 @@
 {
+    // "workbench.colorTheme": "One Dark Pro",
+    "eslint.enable": true,
+    "eslint.options": {
+      "extensions": [".js", ".vue", ".ts", ".tsx"]
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.prettier": true,
+    },
+      "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
     "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
+      "vue",
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.tabSize": 2,
-    "editor.indentSize": "tabSize"
-}
+    // "editor.indentSize": "tabSize"
+  }
