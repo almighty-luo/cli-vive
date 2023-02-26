@@ -2,27 +2,26 @@ module.exports = {
 	root: true,
 	env: {
 		node: true,
-		es2021: true,
+		es2021: true
 	},
 	parser: "@typescript-eslint/parser",
-	extends: [
-		"plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended",
-	],
+	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
 	plugins: ["prettier"],
 	parserOptions: {
-		ecmaVersion: 2020,
+		ecmaVersion: 2020
 	},
 	rules: {
-		"@typescript-eslint/no-inferrable-types": 0,
-		"@typescript-eslint/no-var-requires": 0,
+		// typescript-eslint/recommended默认规则 https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
+		"@typescript-eslint/array-type": [1, "generic"], // 要求对数组始终使用T []或 Array<T>.
+		"@typescript-eslint/no-non-null-asserted-optional-chain": 1, //在可选的链表达式之后禁止非空断言。
+		"@typescript-eslint/no-this-alias": 1, //禁止对此进行别名处理。
 		"no-var": 2,
 		eqeqeq: [
 			"error",
 			"always",
 			{
-				null: "ignore",
-			},
+				null: "ignore"
+			}
 		],
 		// 禁用 console
 		"no-console": 0,
@@ -37,6 +36,6 @@ module.exports = {
 		"prettier/prettier": 0,
 		"space-before-function-paren": "off",
 		// 禁用行尾空格
-		"no-trailing-spaces": 2,
-	},
+		"no-trailing-spaces": 2
+	}
 }
