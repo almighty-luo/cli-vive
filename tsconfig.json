@@ -1,3 +1,18 @@
 {
-	
+    "compilerOptions": {
+        "module": "system",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "packages/",
+        "sourceMap": true
+    },
+    "include": [
+        "packages/vive/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "docs/**/*"
+    ]
 }
