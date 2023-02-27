@@ -1,4 +1,7 @@
 node_modules/
+docs/
+packages/vive-mini/
+playground/
 build/
 dist/
 bin/

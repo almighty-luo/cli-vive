@@ -1,7 +1,11 @@
 // 处理模板项目模块
-function handleTemplate() {
+import Central from "../../central/index"
+import { outputFile } from "fs-extra"
+console.log(outputFile)
+function handleTemplate(central: Central): Promise<Central> {
 	return new Promise((resolve, reject) => {
+		console.log(central)
 		console.log(resolve, reject)
 	})
 }
-module.exports = handleTemplate
+export default handleTemplate

@@ -2,7 +2,7 @@
   "name": "cli-vive",
   "version": "1.0.0",
   "description": "便捷脚手架",
-  "main": "index.js",
+  "main": "./packages/vive-mini/main.js",
   "bin": {
     "vive": "./bin/www.js"
   },
@@ -30,6 +30,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts",
     "eslint": "eslint ./packages/vive/src --ext .ts",
+    "build": "tsc",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -44,6 +45,7 @@
   "license": "ISC",
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.2",
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",

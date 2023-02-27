@@ -1,10 +1,18 @@
-const Central = require('../../central/index')
+import Central from "../../central/index"
+import type { IOption } from "../../types/index"
+
 // 模板下载模块
-function download() {
+const obj: IOption = {
+	cmdPath: "",
+	project: "",
+	logType: "log",
+	templatePath: ""
+}
+function download(): Promise<Central> {
 	return new Promise((resolve, reject) => {
-		const central = new Central()
+		const central = new Central(obj)
 		console.log(resolve, reject, central)
 		resolve(central)
 	})
 }
-module.exports = download
+export default download

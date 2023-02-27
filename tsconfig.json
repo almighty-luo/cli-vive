@@ -1,18 +1,19 @@
 {
     "compilerOptions": {
-        "module": "system",
-        "noImplicitAny": true,
-        "removeComments": true,
+        "module": "CommonJS",
+        "noImplicitAny": true, // 不允许隐式的any类型
+        "removeComments": true,  // 是否移除注释
         "preserveConstEnums": true,
-        "outFile": "packages/",
-        "sourceMap": true
+        "outDir": "./packages/vive-mini"
     },
     "include": [
-        "packages/vive/**/*"
+        "packages/vive/src/main.ts"
     ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts",
-        "docs/**/*"
+        "docs/**/*",
+        "packages/vive-mini/",
+        "playground"
     ]
 }

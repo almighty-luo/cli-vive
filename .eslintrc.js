@@ -12,7 +12,7 @@ module.exports = {
 	},
 	rules: {
 		// typescript-eslint/recommended默认规则 https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
-		"@typescript-eslint/array-type": [1, "generic"], // 要求对数组始终使用T []或 Array<T>.
+		"@typescript-eslint/array-type": [1, { default: "generic" }], // 要求对数组始终使用T []或 Array<T>.
 		"@typescript-eslint/no-non-null-asserted-optional-chain": 1, //在可选的链表达式之后禁止非空断言。
 		"@typescript-eslint/no-this-alias": 1, //禁止对此进行别名处理。
 		"no-var": 2,

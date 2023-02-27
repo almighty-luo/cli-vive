@@ -1,5 +1,7 @@
 // 删除文件
-function deleteFile(): void {
-	console.log('delete')
+import Central from "../../central/index"
+
+function deleteFile(central: Central): void {
+	console.log("delete", central)
 }
-module.exports = deleteFile
+export default deleteFile
