@@ -24,6 +24,10 @@ module.exports = {
 				null: "ignore",
 			},
 		],
+		"arrow-body-style": 0,
+		"class-methods-use-this": 0,
+		"func-names": 0,
+		"multiline-comment-style": 0,
 		// 禁用 console
 		"no-console": 0,
 		// 禁止不必要的括号 //(a * b) + c;//报错
