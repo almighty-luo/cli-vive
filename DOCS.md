@@ -58,18 +58,18 @@ interface Props {}
 
 ##### 文件名
 
-普通文件/目录使用小写'-'分隔符形式, 和 npm 包的命名规则保持一致, 例如 global-style.
+普通文件/目录使用驼峰形式, 这样和 npm 包的命名规则区分开来, 例如 global-style.
 
 如果你的文件只输出一个类，那你的文件名必须和类名完全保持一致. 换句话说就是文件命名和默认导出保持一致:
 
 ```ts
 // BAD
-import CheckBox from "./checkBox"
-// or
 import CheckBox from "./check_box"
 
 // GOOD
 import CheckBox from "./CheckBox"
+// or
+import CheckBox from "./checkBox"
 ```
 
 ##### 不使用 var

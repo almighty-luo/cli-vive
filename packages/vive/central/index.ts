@@ -1,25 +1,31 @@
 // 调度中心模块,负责公共数据和方法
-import type { IOption, ISelecItem } from "../types/index"
+import type { Option, SelecItem } from "../types/index"
 class Central {
-	readonly cmdPath: string //当前执行脚手架命令的终端路径
-	readonly project: string //用户创建的文件名称或路劲
-	readonly logType: string //日志模式
-	templatePath: string // 用户指定启动模板项目路径
+	/* 模板项目中提供给用户选择的数据 */
+	public selectDataList?: Array<SelecItem>
+	/* 用户选择的数据 */
+	public selectData?: object
+	/*  用户指定启动模板项目路径 */
+	public templatePath: string
+	/* 删除文件路径或文件类型 */
+	public deletePropsList: Array<string> = []
+	/* 填充数据 */
+	public renderData?: object
+
+	/* 当前执行脚手架命令的终端路径 */
+	readonly cmdPath: string
+	/* 用户创建的文件名称或路劲 */
+	readonly project: string
+	/* 日志模式 */
+	readonly logType: string
 
 	/* 忽略文件或文件路径或文件类型 */
-	private renderignore = ["*.svg", "*.png", "*.jpg", "*.webp", "*.mp4", "*.mp3"]
-	/* 模板项目中提供给用户选择的数据 */
-	selectDataList?: Array<ISelecItem>
-	/* 用户选择的数据 */
-	selectData?: object
-	/* 填充数据 */
-	renderData?: object
+	private _renderignore = ["*.svg", "*.png", "*.jpg", "*.webp", "*.mp4", "*.mp3"]
 	/* 指定二次移动时,不需要处理的文件 */
-	private moveignore: Array<string> = []
-	/* 删除文件路径或文件类型 */
-	deletePropsList: Array<string>
+	private _moveignore: Array<string> = []
+
 	/* 初始化 */
-	constructor(option: IOption) {
+	constructor(option: Option) {
 		const { cmdPath, project, logType, templatePath } = option
 		this.cmdPath = cmdPath
 		this.project = project
@@ -27,22 +33,22 @@ class Central {
 		this.templatePath = templatePath
 	}
 
-	getRenderignore(): Array<string> {
-		return this.renderignore
+	get renderignore(): Array<string> {
+		return this._renderignore
 	}
 
 	pushRenderignore(args: Array<string>): Array<string> {
-		this.renderignore.push(...args)
-		return this.renderignore
+		this._renderignore.push(...args)
+		return this._renderignore
 	}
 
-	getMoveignore(): Array<string> {
-		return this.moveignore
+	get moveignore(): Array<string> {
+		return this._moveignore
 	}
 
 	pushMoveignore(args: Array<string>): Array<string> {
-		this.moveignore.push(...args)
-		return this.moveignore
+		this._moveignore.push(...args)
+		return this._moveignore
 	}
 }
 

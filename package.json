@@ -28,7 +28,7 @@
     "url": "git+https://github.com/almighty-luo/sixi-cli.git"
   },
   "scripts": {
-    "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts",
+    "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts && npm run build",
     "eslint": "eslint ./packages/vive/src --ext .ts",
     "build": "tsc",
     "docs:dev": "vitepress dev docs",
