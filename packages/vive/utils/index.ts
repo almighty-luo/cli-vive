@@ -1,10 +1,10 @@
-const fse = require('fs-extra')
+import fse from "fs-extra"
 console.log(fse)
 /* 判断是否有配置文件 */
 function hasOptionFile(): object {
-  return {}
+	return {}
 }
 
 module.exports = {
-  hasOptionFile,
+	hasOptionFile
 }
