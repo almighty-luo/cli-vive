@@ -2,6 +2,6 @@
 import Central from "../../central/index"
 
 function deleteFile(central: Central): void {
-	console.log("delete", central)
+	central
 }
 export default deleteFile

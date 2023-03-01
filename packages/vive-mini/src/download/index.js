@@ -1,17 +1,31 @@
 "use strict";
-exports.__esModule = true;
-var index_1 = require("../../central/index");
-var obj = {
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("../../central/index");
+const utils_1 = require("../../utils");
+const obj = {
     cmdPath: "",
     project: "",
     logType: "log",
     templatePath: ""
 };
 function download() {
-    return new Promise(function (resolve, reject) {
-        var central = new index_1["default"](obj);
-        console.log(resolve, reject, central);
-        resolve(central);
+    return __awaiter(this, void 0, void 0, function* () {
+        const cliConfigJson = yield (0, utils_1.getOptionOfFile)();
+        cliConfigJson;
+        return new Promise((resolve, reject) => {
+            const central = new index_1.default(obj);
+            resolve(central);
+            reject(central);
+        });
     });
 }
-exports["default"] = download;
+exports.default = download;

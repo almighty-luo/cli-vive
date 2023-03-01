@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 function deleteFile(central) {
-    console.log("delete", central);
+    central;
 }
-exports["default"] = deleteFile;
+exports.default = deleteFile;

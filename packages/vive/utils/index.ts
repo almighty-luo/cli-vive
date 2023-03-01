@@ -19,7 +19,7 @@ export function hasOptionFile(path: string): boolean {
 /* 获取配置 */
 export async function getOptionOfFile() {
 	const filePath = join(processCwd(), "cli.config.json")
-	const option: object = await (hasOptionFile(filePath) ? import(filePath) : import("../../../cli.config.json"))
+	const option: object = await (hasOptionFile(filePath) ? import(filePath) : import("../cli.config.json"))
 	return option
 }
 

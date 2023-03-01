@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cac": "^6.7.14",
     "chalk": "^5.0.1",
     "commander": "^9.2.0",
     "consolidate": "^0.16.0",
@@ -28,7 +29,7 @@
     "url": "git+https://github.com/almighty-luo/sixi-cli.git"
   },
   "scripts": {
-    "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts && npm run build",
+    "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts",
     "eslint": "eslint ./packages/vive/src --ext .ts",
     "build": "tsc",
     "docs:dev": "vitepress dev docs",
@@ -36,7 +37,8 @@
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
     "prettier": "prettier --write ./packages/vive/src",
-    "test": "jest ./playground/tests/main.test.ts"
+    "test": "jest ./playground/tests/main.test.ts",
+    "vive": "vive create xxx"
   },
   "keywords": [
     "cli",
@@ -68,6 +70,13 @@
     "*.ts": [
       "eslint --fix",
       "prettier --write"
+    ]
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*",
+      "packages/vive-mini/*"
     ]
   }
 }

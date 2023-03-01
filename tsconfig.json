@@ -16,7 +16,7 @@
 		"noUnusedParameters": true, // 检若有未使用的函数参数则抛错
 		"noEmit": false, // noEmit 不生成编译后的文件（只执行编译过程）
 		"baseUrl": "./", // 解析非相对模块的基地址
-		"outDir": "./packages/vive-mini", //指定输出目录
+		"outDir": "packages/vive-mini/", //指定输出目录
 		"lib": ["ESNext", "dom"] //指定库
 	},
 	// ts管辖的目录

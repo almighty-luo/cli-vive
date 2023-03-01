@@ -1,31 +1,29 @@
 "use strict";
-exports.__esModule = true;
-var Central = (function () {
-    function Central(option) {
-        this.renderignore = ["*.svg", "*.png", "*.jpg", "*.webp", "*.mp4", "*.mp3"];
-        this.moveignore = [];
-        var cmdPath = option.cmdPath, project = option.project, logType = option.logType, templatePath = option.templatePath;
+Object.defineProperty(exports, "__esModule", { value: true });
+class Central {
+    constructor(option) {
+        this.deletePropsList = [];
+        this._renderignore = ["*.svg", "*.png", "*.jpg", "*.webp", "*.mp4", "*.mp3"];
+        this._moveignore = [];
+        const { cmdPath, project, logType, templatePath } = option;
         this.cmdPath = cmdPath;
         this.project = project;
         this.logType = logType;
         this.templatePath = templatePath;
     }
-    Central.prototype.getRenderignore = function () {
-        return this.renderignore;
-    };
-    Central.prototype.pushRenderignore = function (args) {
-        var _a;
-        (_a = this.renderignore).push.apply(_a, args);
-        return this.renderignore;
-    };
-    Central.prototype.getMoveignore = function () {
-        return this.moveignore;
-    };
-    Central.prototype.pushMoveignore = function (args) {
-        var _a;
-        (_a = this.moveignore).push.apply(_a, args);
-        return this.moveignore;
-    };
-    return Central;
-}());
-exports["default"] = Central;
+    get renderignore() {
+        return this._renderignore;
+    }
+    pushRenderignore(args) {
+        this._renderignore.push(...args);
+        return this._renderignore;
+    }
+    get moveignore() {
+        return this._moveignore;
+    }
+    pushMoveignore(args) {
+        this._moveignore.push(...args);
+        return this._moveignore;
+    }
+}
+exports.default = Central;
