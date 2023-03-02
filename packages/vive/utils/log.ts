@@ -1,34 +1,21 @@
+import { red, green, yellow } from "ansis/colors"
+/**
+ *
+ */
 class Log {
-	black(text: string) {
-		console.log("\033[30m" + text + "\033[0m")
-		return this
-	}
+	/* 错误 */
 	red(text: string) {
-		console.log("\033[31m" + text + "\033[0m")
+		console.log(red(text))
 		return this
 	}
-	green(text: string) {
-		console.log("\033[32m" + text + "\033[0m")
-		return this
-	}
+	/* 警告 */
 	yellow(text: string) {
-		console.log("\033[33m" + text + "\033[0m")
+		console.log(yellow(text))
 		return this
 	}
-	blue(text: string) {
-		console.log("\033[34m" + text + "\033[0m")
-		return this
-	}
-	popurse(text: string) {
-		console.log("\033[35m" + text + "\033[0m")
-		return this
-	}
-	indigo(text: string) {
-		console.log("\033[36m" + text + "\033[0m")
-		return this
-	}
-	white(text: string) {
-		console.log("\033[37m" + text + "\033[0m")
+	/* 成功 */
+	green(text: string) {
+		console.log(green(text))
 		return this
 	}
 }

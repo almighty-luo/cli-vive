@@ -4,7 +4,14 @@ import deleteFile from "./deleteFlie/index"
 import Central from "../central"
 import Cas from "../utils/cas"
 import Log from "../utils/log"
-console.log(Log)
+import * as ora from "ora"
+
+const spinner = ora("Loading unicorns").start()
+setTimeout(() => {
+	spinner.color = "yellow"
+	spinner.text = "Loading rainbows"
+}, 1000)
+Log
 /* 入口文件 */
 async function main() {
 	/* 读取用户指令 */

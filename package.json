@@ -7,8 +7,10 @@
     "vive": "./bin/www.js"
   },
   "dependencies": {
+    "ansis": "^1.5.5",
     "axios": "^0.27.2",
     "cac": "^6.7.14",
+    "cli-spinners": "^2.7.0",
     "commander": "^9.2.0",
     "consolidate": "^0.16.0",
     "ejs": "^3.1.8",
@@ -18,7 +20,7 @@
     "inquirer": "^8.2.4",
     "metalsmith": "^2.4.3",
     "nodemon": "^2.0.20",
-    "ora": "^6.1.0",
+    "ora": "^5.4.1",
     "picocolors": "^1.0.0",
     "request": "^2.88.2",
     "simple-git": "^3.14.1",
