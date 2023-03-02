@@ -13,11 +13,16 @@ const index_1 = require("./download/index");
 const index_2 = require("./handleTemplate/index");
 const index_3 = require("./deleteFlie/index");
 const cas_1 = require("../utils/cas");
-const cas = new cas_1.default();
-console.log(cas.parse);
+const log_1 = require("../utils/log");
+console.log(log_1.default);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        const downloadCentral = yield (0, index_1.default)();
+        const cas = new cas_1.default();
+        const args = cas.parse.args;
+        const options = cas.parse.options;
+        if (!args.length)
+            return;
+        const downloadCentral = yield (0, index_1.default)(args[0], options.p, options.log);
         const handleTemplateCentral = yield (0, index_2.default)(downloadCentral);
         (0, index_3.default)(handleTemplateCentral);
     });

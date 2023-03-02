@@ -1,6 +1,8 @@
 import { cac } from "cac"
+import { version } from "../config/config"
 class Cas {
 	public parse
+	readonly version: string
 	constructor() {
 		const cli = cac()
 		cli.command("create", "创建项目：vive create xxx")
@@ -11,8 +13,10 @@ class Cas {
 			default: "log"
 		})
 		cli.help()
+		cli.version(version)
 		const parse = cli.parse()
 		this.parse = parse
+		this.version = version
 	}
 }
 

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cac_1 = require("cac");
+const config_1 = require("../config/config");
 class Cas {
     constructor() {
         const cli = (0, cac_1.cac)();
@@ -12,8 +13,10 @@ class Cas {
             default: "log"
         });
         cli.help();
+        cli.version(config_1.version);
         const parse = cli.parse();
         this.parse = parse;
+        this.version = config_1.version;
     }
 }
 exports.default = Cas;

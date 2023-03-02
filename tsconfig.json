@@ -4,17 +4,17 @@
 		"target": "es2016", // 编译后的js版本
 		"charset": "utf8", //输入文件的字符集
 		"sourceMap": false, // 把 ts 文件编译成 js 文件的时候，同时生成对应的 map 文件
-		"alwaysStrict": true, // 在代码中注入'use strict',以严格模式解析并为每个源文件生成 "use strict"语句
-		"allowSyntheticDefaultImports": true, // 允许合成默认导入
+		"alwaysStrict": false, // 在代码中注入'use strict',以严格模式解析并为每个源文件生成 "use strict"语句
+		"allowSyntheticDefaultImports": false, // 允许合成默认导入
 		"resolveJsonModule": true, //允许导入扩展名为“.json”的模块
 		"noImplicitAny": true, // 不允许隐式的any类型
 		"removeComments": true, // 是否移除注释
 		"skipLibCheck": true, //忽略所有的声明文件（ *.d.ts）的类型检查
 		"preserveConstEnums": true,
 		"experimentalDecorators": true, // 启用ES装饰器模式
-		"strict": true, //严格检查
+		"strict": false, //严格检查
 		"noUnusedParameters": true, // 检若有未使用的函数参数则抛错
-		"noEmit": false, // noEmit 不生成编译后的文件（只执行编译过程）
+		"noEmit": false, // noEmit 不生成编译后的文件（只执行编译过程
 		"baseUrl": "./", // 解析非相对模块的基地址
 		"outDir": "packages/vive-mini/", //指定输出目录
 		"lib": ["ESNext", "dom"] //指定库

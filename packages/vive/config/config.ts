@@ -1,7 +1,6 @@
-const path = require("path")
+/* 脚手架版本 */
+export const version = "1.0.0"
 
-// 获取当前命令行路径
-export const processCwd = process.cwd()
-
-// 获取项目根目录
-export const dirnameStr = path.resolve(__dirname, "..")
+export default {
+	version
+}

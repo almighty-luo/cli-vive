@@ -11,14 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../central/index");
 const utils_1 = require("../../utils");
-const obj = {
-    cmdPath: "",
-    project: "",
-    logType: "log",
-    templatePath: ""
-};
-function download() {
+function download(project, logType, templatePath) {
     return __awaiter(this, void 0, void 0, function* () {
+        const obj = {
+            cmdPath: "",
+            logType: logType === "txt" ? "txt" : "log",
+            templatePath,
+            project
+        };
         const cliConfigJson = yield (0, utils_1.getOptionOfFile)();
         cliConfigJson;
         return new Promise((resolve, reject) => {

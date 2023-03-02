@@ -9,7 +9,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cac": "^6.7.14",
-    "chalk": "^5.0.1",
     "commander": "^9.2.0",
     "consolidate": "^0.16.0",
     "ejs": "^3.1.8",
@@ -20,6 +19,7 @@
     "metalsmith": "^2.4.3",
     "nodemon": "^2.0.20",
     "ora": "^6.1.0",
+    "picocolors": "^1.0.0",
     "request": "^2.88.2",
     "simple-git": "^3.14.1",
     "zlib": "^1.0.5"
@@ -30,6 +30,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec ts-node ./packages/vive/src/main.ts",
+    "dev:one": "ts-node ./packages/vive/src/main.ts",
     "eslint": "eslint ./packages/vive/src --ext .ts",
     "build": "tsc",
     "docs:dev": "vitepress dev docs",

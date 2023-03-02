@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dirnameStr = exports.processCwd = void 0;
-const path = require("path");
-exports.processCwd = process.cwd();
-exports.dirnameStr = path.resolve(__dirname, "..");
+exports.version = void 0;
+exports.version = "1.0.0";
+exports.default = {
+    version: exports.version
+};
