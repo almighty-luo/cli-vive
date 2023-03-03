@@ -2,8 +2,10 @@ lockfileVersion: 5.4
 
 specifiers:
   '@commitlint/config-conventional': ^17.4.2
+  '@types/ejs': ^3.1.2
   '@types/fs-extra': ^11.0.1
   '@types/jest': ^29.4.0
+  '@types/metalsmith': ^2.3.1
   '@types/node': ^18.11.18
   '@typescript-eslint/eslint-plugin': ^5.50.0
   '@typescript-eslint/parser': ^5.50.0
@@ -60,8 +62,10 @@ dependencies:
 
 devDependencies:
   '@commitlint/config-conventional': 17.4.2
+  '@types/ejs': registry.npmmirror.com/@types/ejs/3.1.2
   '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/11.0.1
   '@types/jest': registry.npmmirror.com/@types/jest/29.4.0
+  '@types/metalsmith': registry.npmmirror.com/@types/metalsmith/2.3.1
   '@types/node': 18.11.18
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
@@ -589,6 +593,7 @@ packages:
 
   /@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -4471,6 +4476,12 @@ packages:
       '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: true
 
+  registry.npmmirror.com/@types/ejs/3.1.2:
+    resolution: {integrity: sha512-ZmiaE3wglXVWBM9fyVC17aGPkLo/UgaOjEiI2FXQfyczrCefORPxIe+2dVmnmk3zkVIbizjrlQzmPGhSYGXG5g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/ejs/-/ejs-3.1.2.tgz}
+    name: '@types/ejs'
+    version: 3.1.2
+    dev: true
+
   registry.npmmirror.com/@types/fs-extra/11.0.1:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/fs-extra/-/fs-extra-11.0.1.tgz}
     name: '@types/fs-extra'
@@ -4527,11 +4538,18 @@ packages:
       '@types/node': registry.npmmirror.com/@types/node/18.11.18
     dev: true
 
+  registry.npmmirror.com/@types/metalsmith/2.3.1:
+    resolution: {integrity: sha512-ihydy/ic7kaMB6sJyePxFxO4f4diHrjQfkVmzem5hSXH0MzlSmdivG3gAzRSm2Yy0QQOG54DigQoQj3dqFDtZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/metalsmith/-/metalsmith-2.3.1.tgz}
+    name: '@types/metalsmith'
+    version: 2.3.1
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node/18.11.18
+    dev: true
+
   registry.npmmirror.com/@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.11.18.tgz}
     name: '@types/node'
     version: 18.11.18
-    dev: true
 
   registry.npmmirror.com/@types/prettier/2.7.2:
     resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prettier/-/prettier-2.7.2.tgz}
@@ -4565,7 +4583,7 @@ packages:
     version: 2.10.0
     requiresBuild: true
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': registry.npmmirror.com/@types/node/18.11.18
     dev: false
     optional: true
 
