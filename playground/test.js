@@ -1,7 +1,3 @@
-const ora = require("ora")
+const fse = require("fs-extra")
 
-const spinner = ora("Loading unicorns").start()
-setTimeout(() => {
-	spinner.color = "yellow"
-	spinner.text = "Loading rainbows"
-}, 1000)
+console.log(fse.pathExistsSync("./test1.txt"))

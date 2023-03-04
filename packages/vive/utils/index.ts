@@ -1,4 +1,4 @@
-import { accessSync } from "fs"
+import { pathExistsSync, outputFileSync } from "fs-extra"
 import { join } from "path"
 
 /* 获取当前执行命令路径 */
@@ -9,11 +9,11 @@ export function processCwd(): string {
 /* 判断是否有配置文件 */
 export function hasOptionFile(path: string): boolean {
 	try {
-		accessSync(path)
+		if (pathExistsSync(path)) return true
 	} catch (error) {
 		return false
 	}
-	return true
+	return false
 }
 
 /* 获取配置 */
@@ -23,8 +23,13 @@ export async function getOptionOfFile() {
 	return option
 }
 
+export function outputFile(file: string, text: string, flag = "a+"): void {
+	outputFileSync(file, text, { flag })
+}
+
 export default {
 	hasOptionFile,
 	getOptionOfFile,
-	processCwd
+	processCwd,
+	outputFile
 }

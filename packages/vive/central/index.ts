@@ -14,10 +14,10 @@ class Central {
 
 	/* 当前执行脚手架命令的终端路径 */
 	readonly cmdPath: string
-	/* 用户创建的文件名称或路劲 */
+	/* 用户创建的文件名称或路径 */
 	readonly project: string
 	/* 日志模式 */
-	readonly logType: string
+	readonly logType: "log" | "txt"
 
 	/* 忽略文件或文件路径或文件类型 */
 	private _renderignore = ["*.svg", "*.png", "*.jpg", "*.webp", "*.mp4", "*.mp3"]
