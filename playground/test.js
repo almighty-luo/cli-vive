@@ -1,3 +1,3 @@
-const fse = require("fs-extra")
+const { formatDate } = require("../packages/vive-mini/utils")
 
-console.log(fse.pathExistsSync("./test1.txt"))
+console.log(formatDate(new Date()))

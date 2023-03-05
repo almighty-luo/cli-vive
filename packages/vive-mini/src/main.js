@@ -14,7 +14,13 @@ const index_2 = require("./handleTemplate/index");
 const index_3 = require("./deleteFlie/index");
 const cas_1 = require("../utils/cas");
 const log_1 = require("../utils/log");
-console.log(log_1.default);
+const ora = require("ora");
+const spinner = ora("Loading unicorns").start();
+setTimeout(() => {
+    spinner.color = "yellow";
+    spinner.text = "Loading rainbows";
+}, 1000);
+log_1.default;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const cas = new cas_1.default();

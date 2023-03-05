@@ -1,7 +1,7 @@
 import { join } from "path"
 import { red, green, yellow, black, white } from "ansis/colors"
 import type { Text } from "../types/type"
-import { outputFile } from "../utils"
+import { outputFile, formatDate } from "../utils"
 import Central from "../central"
 class Log {
 	public red = red
@@ -52,7 +52,7 @@ class Log {
 	public outLogTxt(text: Text) {
 		const { cmdPath, project } = this.central
 		const file = join(cmdPath, project, "log.txt")
-		const content = `${this._logNum++}: ${text}\r`
+		const content = `${this._logNum++}. ${text} --${formatDate(new Date())}\r`
 		outputFile(file, content)
 	}
 }
