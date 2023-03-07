@@ -6,8 +6,8 @@
  * @LastEditors: skygray
  */
 import { join } from "path"
-import Central from "../../../central"
-import { processCwd } from "../../../utils"
+import Central from "../../central"
+import { processCwd } from ".."
 
 /* 生命周期函数集 */
 export interface ILifeCycleCollect {

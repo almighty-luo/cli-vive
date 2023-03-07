@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-03-03 16:11:24
  * @LastEditors: skygray
  */
-import Central from "../../../central"
+import Central from "../../central"
 import { getLifeCycle, ILifeCycleCollect } from "./getLifeCycle"
 
 class LifeCycle {

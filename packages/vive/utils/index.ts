@@ -1,5 +1,7 @@
 import { pathExistsSync, outputFileSync } from "fs-extra"
 import { join } from "path"
+import { text } from "stream/consumers"
+import Loading from "../utils/loading"
 
 /* 获取当前执行命令路径 */
 export function processCwd(): string {
@@ -52,10 +54,14 @@ export function formatDate(date: Date, format = "YYYY-mm-dd HH:MM:SS"): string {
 	return format
 }
 
+export function loading(text = "加载中...") {
+	return new Loading(text)
+}
 export default {
 	hasOptionFile,
 	getOptionOfFile,
 	processCwd,
 	outputFile,
-	formatDate
+	formatDate,
+	loading
 }
