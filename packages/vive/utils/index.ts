@@ -1,6 +1,5 @@
 import { pathExistsSync, outputFileSync } from "fs-extra"
 import { join } from "path"
-import { text } from "stream/consumers"
 import Loading from "../utils/loading"
 
 /* 获取当前执行命令路径 */

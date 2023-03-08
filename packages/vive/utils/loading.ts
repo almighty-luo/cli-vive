@@ -1,3 +1,4 @@
+/* 打印loading */
 import * as ora from "ora"
 import type { Ora } from "ora"
 import { Color } from "ora"

@@ -16,32 +16,32 @@ class Log {
 	}
 	/* 错误 ---红色 */
 	public logRed(text: Text) {
-		console.log(`${red}${text}`)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(`${red}${text}`)
 		return this
 	}
 	/* 警告 ---黄色 */
 	public logYellow(text: Text) {
-		console.log(`${yellow}${text}`)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(`${yellow}${text}`)
 		return this
 	}
 	/* 成功 ---绿色 */
 	public logGreen(text: Text) {
-		console.log(`${green}${text}`)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(`${green}${text}`)
 		return this
 	}
 	/* 区分 ---黑色 */
 	public logBlack(text: Text) {
-		console.log(`${black}${text}`)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(`${black}${text}`)
 		return this
 	}
 	/* 白色 */
 	public logWhite(text: Text) {
-		console.log(`${white}${text}`)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(`${white}${text}`)
 		return this
 	}
 	/* 原生log */
 	public log(text: Text) {
-		console.log(text)
+		this.isLogOutFife() ? this.outLogTxt(text) : console.log(text)
 		return this
 	}
 	/* 获取日志方式 */
