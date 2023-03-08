@@ -53,6 +53,7 @@
     "@commitlint/config-conventional": "^17.4.2",
     "@types/ejs": "^3.1.2",
     "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^9.0.3",
     "@types/jest": "^29.4.0",
     "@types/metalsmith": "^2.3.1",
     "@types/node": "^18.11.18",
