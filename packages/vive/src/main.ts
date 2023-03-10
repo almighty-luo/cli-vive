@@ -4,8 +4,6 @@ import deleteFile from "./deleteFlie/index"
 import Central from "../central"
 import Cas from "../utils/cas"
 import Log from "../utils/log"
-// import { loading } from "../utils"
-// loading("正在加载")
 Log
 
 /* 入口文件 */
