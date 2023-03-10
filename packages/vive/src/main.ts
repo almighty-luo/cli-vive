@@ -4,7 +4,10 @@ import deleteFile from "./deleteFlie/index"
 import Central from "../central"
 import Cas from "../utils/cas"
 import Log from "../utils/log"
+// import { loading } from "../utils"
+// loading("正在加载")
 Log
+
 /* 入口文件 */
 async function main() {
 	/* 读取用户指令 */
