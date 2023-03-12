@@ -12,6 +12,12 @@ class Cas {
 		cli.option("--log <log>", "日志打印方式: 仅支持log和txt两种", {
 			default: "log"
 		})
+		cli.option("--http <http>", "提供http接口地址", {
+			default: "http"
+		})
+		cli.option("--git <git>", "提供git clone地址", {
+			default: "git"
+		})
 		cli.help()
 		cli.version(version)
 		const parse = cli.parse()
