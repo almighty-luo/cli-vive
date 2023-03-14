@@ -4,6 +4,7 @@ import deleteFile from "./deleteFlie/index"
 import Central from "../central"
 import Cas from "../utils/cas"
 import Log from "../utils/log"
+import type { CasOption } from "../types"
 Log
 
 /* 入口文件 */
@@ -11,8 +12,10 @@ async function main() {
 	/* 读取用户指令 */
 	const cas = new Cas()
 	const args = cas.parse.args as Array<string>
-	const options = cas.parse.options as { p: string; log: string }
-	if (!args.length) return
+	const options = cas.parse.options as CasOption
+	console.log(args)
+	console.log(options)
+	if (!args.length) return new Error("请输入创建项目名称")
 	/* 读取配置文件 */
 	const downloadCentral: Central = await download(args[0], options.p, options.log)
 	const handleTemplateCentral: Central = await handleTemplate(downloadCentral)

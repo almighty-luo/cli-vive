@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../../central/index");
+const index_1 = __importDefault(require("../../central/index"));
 const utils_1 = require("../../utils");
 function download(project, logType, templatePath) {
     return __awaiter(this, void 0, void 0, function* () {

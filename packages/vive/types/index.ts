@@ -1,5 +1,12 @@
 import Central from "../central"
 
+export interface CasOption {
+	p: string
+	log: string
+	out?: string
+	httpAddress?: string
+	gitAddres: string
+}
 export interface Option {
 	cmdPath: string
 	project: string

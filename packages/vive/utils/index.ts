@@ -56,6 +56,7 @@ export function formatDate(date: Date, format = "YYYY-mm-dd HH:MM:SS"): string {
 export function loading(text = "加载中...") {
 	return new Loading(text)
 }
+
 export default {
 	hasOptionFile,
 	getOptionOfFile,
