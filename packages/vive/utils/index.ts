@@ -1,4 +1,4 @@
-import { pathExistsSync, outputFileSync } from "fs-extra"
+import { outputFileSync, pathExistsSync } from "fs-extra"
 import { join } from "path"
 import Loading from "../utils/loading"
 
@@ -55,6 +55,17 @@ export function formatDate(date: Date, format = "YYYY-mm-dd HH:MM:SS"): string {
 
 export function loading(text = "加载中...") {
 	return new Loading(text)
+}
+
+/**
+ * @description: 除去不需处理的文件(文件名或文件后缀)
+ * @return boolean
+ * @param {string} key
+ * @param {Array} renderIgnoreList
+ */
+export function noHas(key: string, renderIgnoreList: Array<string>): boolean {
+	if (renderIgnoreList.includes(key)) return true //判断文件名
+	return renderIgnoreList.includes(key.substring(key.lastIndexOf("."))) //判断文件后缀
 }
 
 export default {
