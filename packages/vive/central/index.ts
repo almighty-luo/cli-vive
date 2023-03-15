@@ -1,5 +1,5 @@
 // 调度中心模块,负责公共数据和方法
-import type { Option, SelecItem } from "../types/index"
+import type { Option, SelecItem } from "../types"
 class Central {
 	/* 模板项目中提供给用户选择的数据 */
 	public selectDataList?: Array<SelecItem>

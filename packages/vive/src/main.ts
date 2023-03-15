@@ -1,25 +1,20 @@
-import download from "./download/index"
-import handleTemplate from "./handleTemplate/index"
-import deleteFile from "./deleteFlie/index"
-import Central from "../central"
-import Cas from "../utils/cas"
-import Log from "../utils/log"
-import type { CasOption } from "../types"
-Log
+// import download from "./download/index"
+// import handleTemplate from "./handleTemplate/index"
+// import deleteFile from "./deleteFlie/index"
+// import Central from "../central"
+// import Log from "../utils/log"
+import type { Option } from "../types"
+import { getOptions } from "../src/getOptions"
 
 /* 入口文件 */
 async function main() {
-	/* 读取用户指令 */
-	const cas = new Cas()
-	const args = cas.parse.args as Array<string>
-	const options = cas.parse.options as CasOption
-	console.log(args)
-	console.log(options)
-	if (!args.length) return new Error("请输入创建项目名称")
+	const option: Option | Error = await getOptions()
+	option
+	// if (!args.length) return new Error("请输入创建项目名称")
 	/* 读取配置文件 */
-	const downloadCentral: Central = await download(args[0], options.p, options.log)
-	const handleTemplateCentral: Central = await handleTemplate(downloadCentral)
-	deleteFile(handleTemplateCentral)
+	// const downloadCentral: Central = await download(args[0], options.p, options.log)
+	// const handleTemplateCentral: Central = await handleTemplate(downloadCentral)
+	// deleteFile(handleTemplateCentral)
 }
 
 main()

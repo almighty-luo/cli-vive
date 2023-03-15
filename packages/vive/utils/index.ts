@@ -1,6 +1,7 @@
 import { outputFileSync, pathExistsSync } from "fs-extra"
 import { join } from "path"
 import Loading from "../utils/loading"
+import type { UserCliConfigJson, DefalueCliConfigJson } from "../types"
 
 /* 获取当前执行命令路径 */
 export function processCwd(): string {
@@ -17,10 +18,16 @@ export function hasOptionFile(path: string): boolean {
 	return false
 }
 
-/* 获取配置 */
-export async function getOptionOfFile() {
+/* 获取用户配置文件 */
+export async function getOptionOfFile(): Promise<UserCliConfigJson> {
 	const filePath = join(processCwd(), "cli.config.json")
-	const option: object = await (hasOptionFile(filePath) ? import(filePath) : import("../cli.config.json"))
+	const option: UserCliConfigJson = await (hasOptionFile(filePath) ? import(filePath) : import("../cli.config.json"))
+	return option
+}
+
+/* 获取系统默认配置文件 */
+export async function getDefaultOptionOfFile(): Promise<DefalueCliConfigJson> {
+	const option: DefalueCliConfigJson = (await import("../cli.config.json")) as DefalueCliConfigJson
 	return option
 }
 
