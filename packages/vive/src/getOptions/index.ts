@@ -1,26 +1,49 @@
-import axios from "axios"
 import Cas from "../../utils/cas"
-import Inquirer from "../../utils/Inquirer"
-import { processCwd, getOptionOfFile, getDefaultOptionOfFile } from "../../utils"
+import { processCwd, getOptionOfFile, getDefaultOptionOfFile, typeHttpDownload } from "../../utils"
 import type { Option, CasOption, UserCliConfigJson, DefalueCliConfigJson } from "../../types"
 
 /* 处理用户下载 */
-const handCasdownload = async (options: CasOption): Promise<{ download: string; address: string }> => {
+const handCasdownload = async (
+	options: CasOption,
+	userCliConfigJson: UserCliConfigJson,
+	defaultCliConfigJson: DefalueCliConfigJson
+): Promise<{ type: string; address: string }> => {
 	const { httpAddress, gitAddres } = options
 	if (gitAddres) {
 		//用户输入git方式
 		return {
-			download: "git",
+			type: "git",
 			address: gitAddres
 		}
 	} else if (httpAddress) {
 		//用户输入http方式
-		// const { inquirerData } = await axios.get(httpAddress)
-		// if (inquirerData)
+		const { address, type } = await typeHttpDownload(httpAddress, {})
+		return {
+			type,
+			address
+		}
+	}
+	const { download, address } = userCliConfigJson
+	const url = address || defaultCliConfigJson.address
+	if (download) {
+		switch (download) {
+			case "git":
+				return {
+					type: download,
+					address: url
+				}
+				break
+			case "http":
+				//用户输入http方式
+				return await typeHttpDownload(url, {})
+				break
+			default:
+				break
+		}
 	}
 	return {
-		download: "",
-		address: ""
+		type: defaultCliConfigJson.download,
+		address: defaultCliConfigJson.address
 	}
 }
 
@@ -56,6 +79,6 @@ export async function getOptions(): Promise<Option | Error> {
 	outPath
 
 	/* 确定下载方式和地址 */
-	const { download, address } = await handCasdownload(options)
+	const { type, address } = await handCasdownload(options, userCliConfigJson, defaultCliConfigJson)
 	return new Error("请输入")
 }

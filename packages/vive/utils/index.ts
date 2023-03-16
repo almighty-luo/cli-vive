@@ -1,8 +1,10 @@
 import { outputFileSync, pathExistsSync } from "fs-extra"
+import axios, { AxiosResponse } from "axios"
+import type { Answers } from "inquirer"
 import { join } from "path"
 import Loading from "../utils/loading"
+import Inquirer from "../utils/inquirer"
 import type { UserCliConfigJson, DefalueCliConfigJson } from "../types"
-
 /* 获取当前执行命令路径 */
 export function processCwd(): string {
 	return process.cwd()
@@ -75,11 +77,32 @@ export function noHas(key: string, renderIgnoreList: Array<string>): boolean {
 	return renderIgnoreList.includes(key.substring(key.lastIndexOf("."))) //判断文件后缀
 }
 
+/* 递归处理http方式获取 */
+export async function typeHttpDownload(
+	url: string,
+	answers: Answers
+): Promise<{ type: "git" | "http"; address: string }> {
+	const { data } = await axios.post<
+		unknown,
+		AxiosResponse<{ inquirerData?: Answers; type: "git" | "http"; address: string }>
+	>(url, answers)
+	const { inquirerData, type, address } = data
+	if (inquirerData) {
+		return await typeHttpDownload(address, inquirerData)
+	} else {
+		return {
+			type,
+			address
+		}
+	}
+	// const inquirer: Inquirer = new Inquirer()
+}
 export default {
 	hasOptionFile,
 	getOptionOfFile,
 	processCwd,
 	outputFile,
 	formatDate,
-	loading
+	loading,
+	typeHttpDownload
 }
