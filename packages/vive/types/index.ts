@@ -36,6 +36,7 @@ export interface UserCliConfigJson {
 	configuration?: Array<{ name?: string; type?: "git" | "http" | "local"; address?: string }>
 	logType?: "txt" | "log"
 	templateDir?: string
+	outPath?: string
 }
 
 /* 脚手架默认提供配置文件数据 */

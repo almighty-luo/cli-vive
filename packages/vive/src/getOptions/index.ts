@@ -1,6 +1,28 @@
+import axios from "axios"
 import Cas from "../../utils/cas"
+import Inquirer from "../../utils/Inquirer"
 import { processCwd, getOptionOfFile, getDefaultOptionOfFile } from "../../utils"
 import type { Option, CasOption, UserCliConfigJson, DefalueCliConfigJson } from "../../types"
+
+/* 处理用户下载 */
+const handCasdownload = async (options: CasOption): Promise<{ download: string; address: string }> => {
+	const { httpAddress, gitAddres } = options
+	if (gitAddres) {
+		//用户输入git方式
+		return {
+			download: "git",
+			address: gitAddres
+		}
+	} else if (httpAddress) {
+		//用户输入http方式
+		// const { inquirerData } = await axios.get(httpAddress)
+		// if (inquirerData)
+	}
+	return {
+		download: "",
+		address: ""
+	}
+}
 
 export async function getOptions(): Promise<Option | Error> {
 	/* 读取用户指令 */
@@ -28,6 +50,12 @@ export async function getOptions(): Promise<Option | Error> {
 	/* 获取模板项目路径 */
 	const templatePath: string = options.p || userCliConfigJson.templateDir || defaultCliConfigJson.templateDir
 	templatePath
-	/*  */
+
+	/* 获取输出文件路径 */
+	const outPath: string = options.out || userCliConfigJson.outPath || project
+	outPath
+
+	/* 确定下载方式和地址 */
+	const { download, address } = await handCasdownload(options)
 	return new Error("请输入")
 }
