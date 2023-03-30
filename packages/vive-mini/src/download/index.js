@@ -20,7 +20,10 @@ function download(project, logType, templatePath) {
             cmdPath: "",
             logType: logType === "txt" ? "txt" : "log",
             templatePath,
-            project
+            project,
+            type: "",
+            address: "",
+            outPath: ""
         };
         const cliConfigJson = yield (0, utils_1.getOptionOfFile)();
         cliConfigJson;

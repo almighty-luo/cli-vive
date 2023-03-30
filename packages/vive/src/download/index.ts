@@ -9,7 +9,10 @@ async function download(project: string, logType: string, templatePath: string):
 		cmdPath: "",
 		logType: logType === "txt" ? "txt" : "log",
 		templatePath,
-		project
+		project,
+		type: "",
+		address: "",
+		outPath: ""
 	}
 	/* 获取配置数据 */
 	const cliConfigJson = await getOptionOfFile()

@@ -8,7 +8,8 @@ const handCasdownload = async (
 	userCliConfigJson: UserCliConfigJson,
 	defaultCliConfigJson: DefalueCliConfigJson
 ): Promise<{ type: string; address: string }> => {
-	const { httpAddress, gitAddres } = options
+	const { http: httpAddress, git: gitAddres } = options
+	console.log("options", httpAddress, gitAddres)
 	if (gitAddres) {
 		//用户输入git方式
 		return {
@@ -32,11 +33,9 @@ const handCasdownload = async (
 					type: download,
 					address: url
 				}
-				break
 			case "http":
 				//用户输入http方式
 				return await typeHttpDownload(url, {})
-				break
 			default:
 				break
 		}
@@ -52,15 +51,13 @@ export async function getOptions(): Promise<Option | Error> {
 	const cas: Cas = new Cas()
 	const args = cas.parse.args as Array<string>
 	const options = cas.parse.options as CasOption
-
+	console.log("options", options)
 	/* 项目名称 */
 	if (!args.length) return new Error("请输入项目名称")
 	const project = args[0]
-	project
 
 	/* 获取当前路径 */
 	const cmdPath: string = processCwd()
-	cmdPath
 
 	/* 获取用户配置文件内容 */
 	const userCliConfigJson: UserCliConfigJson = await getOptionOfFile()
@@ -69,16 +66,30 @@ export async function getOptions(): Promise<Option | Error> {
 	const defaultCliConfigJson: DefalueCliConfigJson = await getDefaultOptionOfFile()
 	/* 获取文件打印类型 */
 	const logType: "log" | "txt" = options.log || userCliConfigJson.logType || defaultCliConfigJson.logType
-	logType
 	/* 获取模板项目路径 */
 	const templatePath: string = options.p || userCliConfigJson.templateDir || defaultCliConfigJson.templateDir
-	templatePath
 
 	/* 获取输出文件路径 */
 	const outPath: string = options.out || userCliConfigJson.outPath || project
-	outPath
 
 	/* 确定下载方式和地址 */
 	const { type, address } = await handCasdownload(options, userCliConfigJson, defaultCliConfigJson)
-	return new Error("请输入")
+	console.log({
+		cmdPath,
+		project,
+		logType,
+		templatePath,
+		outPath,
+		type,
+		address
+	})
+	return {
+		cmdPath,
+		project,
+		logType,
+		templatePath,
+		outPath,
+		type,
+		address
+	}
 }

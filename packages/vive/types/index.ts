@@ -4,8 +4,8 @@ export interface CasOption {
 	p: string
 	log: "log" | "txt"
 	out?: string
-	httpAddress?: string
-	gitAddres: string
+	http?: string
+	git: string
 }
 
 /* 中心数据初始化配置数据 */
@@ -14,6 +14,9 @@ export interface Option {
 	project: string
 	logType: "log" | "txt"
 	templatePath: string
+	outPath: string
+	type: string
+	address: string
 }
 
 export interface SelecItem {

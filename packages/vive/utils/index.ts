@@ -82,20 +82,23 @@ export async function typeHttpDownload(
 	url: string,
 	answers: Answers
 ): Promise<{ type: "git" | "http"; address: string }> {
+	const loading = new Loading("正在获取下一个选择项")
 	const { data } = await axios.post<
 		unknown,
-		AxiosResponse<{ inquirerData?: Answers; type: "git" | "http"; address: string }>
+		AxiosResponse<{ inquirerData?: Answers; type: "http"; address: string }>
 	>(url, answers)
+	loading.close()
 	const { inquirerData, type, address } = data
 	if (inquirerData) {
-		return await typeHttpDownload(address, inquirerData)
+		const inquirer: Inquirer = new Inquirer(inquirerData)
+		const inquirerInputData = (await inquirer.prompt()) as Answers
+		return await typeHttpDownload(address, inquirerInputData)
 	} else {
 		return {
 			type,
 			address
 		}
 	}
-	// const inquirer: Inquirer = new Inquirer()
 }
 export default {
 	hasOptionFile,

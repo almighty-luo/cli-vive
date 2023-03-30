@@ -35,10 +35,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loading = exports.formatDate = exports.outputFile = exports.getOptionOfFile = exports.hasOptionFile = exports.processCwd = void 0;
+exports.typeHttpDownload = exports.noHas = exports.loading = exports.formatDate = exports.outputFile = exports.getDefaultOptionOfFile = exports.getOptionOfFile = exports.hasOptionFile = exports.processCwd = void 0;
 const fs_extra_1 = require("fs-extra");
+const axios_1 = __importDefault(require("axios"));
 const path_1 = require("path");
 const loading_1 = __importDefault(require("../utils/loading"));
+const inquirer_1 = __importDefault(require("../utils/inquirer"));
 function processCwd() {
     return process.cwd();
 }
@@ -63,6 +65,13 @@ function getOptionOfFile() {
     });
 }
 exports.getOptionOfFile = getOptionOfFile;
+function getDefaultOptionOfFile() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const option = (yield Promise.resolve().then(() => __importStar(require("../cli.config.json"))));
+        return option;
+    });
+}
+exports.getDefaultOptionOfFile = getDefaultOptionOfFile;
 function outputFile(file, text, flag = "a+") {
     (0, fs_extra_1.outputFileSync)(file, text, { flag });
 }
@@ -88,11 +97,38 @@ function loading(text = "加载中...") {
     return new loading_1.default(text);
 }
 exports.loading = loading;
+function noHas(key, renderIgnoreList) {
+    if (renderIgnoreList.includes(key))
+        return true;
+    return renderIgnoreList.includes(key.substring(key.lastIndexOf(".")));
+}
+exports.noHas = noHas;
+function typeHttpDownload(url, answers) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const loading = new loading_1.default("正在获取选择项");
+        const { data } = yield axios_1.default.post(url, answers);
+        loading.close();
+        const { inquirerData, type, address } = data;
+        if (inquirerData) {
+            const inquirer = new inquirer_1.default(inquirerData);
+            const inquirerInputData = (yield inquirer.prompt());
+            return yield typeHttpDownload(address, inquirerInputData);
+        }
+        else {
+            return {
+                type,
+                address
+            };
+        }
+    });
+}
+exports.typeHttpDownload = typeHttpDownload;
 exports.default = {
     hasOptionFile,
     getOptionOfFile,
     processCwd,
     outputFile,
     formatDate,
-    loading
+    loading,
+    typeHttpDownload
 };

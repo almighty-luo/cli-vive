@@ -9,7 +9,7 @@ import { getOptions } from "../src/getOptions"
 /* 入口文件 */
 async function main() {
 	const option: Option | Error = await getOptions()
-	option
+	console.log(option)
 	// if (!args.length) return new Error("请输入创建项目名称")
 	/* 读取配置文件 */
 	// const downloadCentral: Central = await download(args[0], options.p, options.log)
