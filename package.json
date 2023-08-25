@@ -1,6 +1,6 @@
 {
   "name": "cli-vive",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "便捷脚手架",
   "main": "index.js",
   "bin": {

@@ -93,7 +93,8 @@ npm i cli-vive -g
     "isSetUserSelect": true //提供的数据是否由用户选择
     "data": {
         "selectData": ["axios", "vuex", "eslint"] // 提供给用户选择的数据
-    }
+    },
+    "ignores": [".mp3", ".mp4"] //提供给渲染引擎渲染时,忽略的文件
 }
 
 ```
